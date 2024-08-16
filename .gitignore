@@ -10,3 +10,8 @@ dist/
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
+
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/extensions.json
