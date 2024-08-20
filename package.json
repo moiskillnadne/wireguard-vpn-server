@@ -9,7 +9,8 @@
     "prettier:check": "prettier --check 'src/**/*.{js,ts,tsx,json,md}'",
     "lint": "eslint 'src/**/*.{js,ts,tsx}'",
     "lint:fix": "eslint 'src/**/*.{js,ts,tsx}' --fix",
-    "test": "jest"
+    "test": "jest",
+    "postgres:run": "docker run --name wg-db -e POSTGRES_PASSWORD=${DB_PASSWORD:-mysecretpassword} -p 5432:5432 -d postgres:15"
   },
   "dependencies": {
     "@dotenvx/dotenvx": "^1.7.0",
