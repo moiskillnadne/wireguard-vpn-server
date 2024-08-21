@@ -1,23 +1,26 @@
-import express from 'express';
+import 'reflect-metadata';
+import express, { Request, Response } from 'express';
 
-import { TerminalService } from '~/core/utils/terminal/TerminalService';
-import { FileSystemService } from '~/core/utils/fileSystem/FileSystemService';
+import { sequelize } from './database/config';
 
 const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-app.get('/', (req, res) => {
-  const terminal = new TerminalService(new FileSystemService());
+app.use(express.json());
 
-  try {
-    const result = terminal.executeScript('/Users/victorryabkov/projects/bash_scripts/test.sh', ['Hello', 'World']);
-    res.send(result);
-  } catch (error) {
-    res.status(404).send(error);
-  }
+app.get('/healthcheck', (req, res) => {
+  res.send('OK');
 });
 
-app.listen(PORT, () => {
+
+app.listen(PORT, async () => {
   console.log(`Server is running on http://localhost:${PORT}`);
+
+  try {
+    await sequelize.authenticate();
+    console.log('Database connection has been established successfully.');
+  } catch (error) {
+    console.error('Unable to connect to the database:', error);
+  }
 });
