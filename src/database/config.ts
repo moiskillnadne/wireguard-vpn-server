@@ -7,5 +7,5 @@ export const sequelize = new Sequelize({
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  logging: true,
+  logging: process.env.DB_LOGGING === 'true' ? console.log : false,
 })
