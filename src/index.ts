@@ -4,7 +4,7 @@ import express, { Request, Response } from 'express';
 
 import { sequelize } from '~/database/config';
 import { UserController } from '~/api/user';
-import { serviceAutorization } from './core/middleware';
+import { serviceAutorization } from '~/core/middleware';
 
 const app = express();
 
