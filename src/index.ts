@@ -1,7 +1,9 @@
 import 'reflect-metadata';
 import express, { Request, Response } from 'express';
 
-import { sequelize } from './database/config';
+import { sequelize } from '~/database/config';
+import { UserController, userCreationSchema } from '~/api/user';
+import User from '~/database/models/User';
 
 const app = express();
 
@@ -11,6 +13,12 @@ app.use(express.json());
 
 app.get('/healthcheck', (req, res) => {
   res.send('OK');
+});
+
+app.post('/authorize', async (req: Request, res: Response) => {
+  const userController = new UserController(req, res);
+
+  return userController.authorize();
 });
 
 
