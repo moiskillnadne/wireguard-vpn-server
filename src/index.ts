@@ -15,11 +15,11 @@ app.use(express.json());
 
 app.use(serviceAutorization)
 
-app.get('/healthcheck', (req, res) => {
+app.get('/api/healthcheck', (req, res) => {
   res.send('OK');
 });
 
-app.post('/authorize', async (req: Request, res: Response) => {
+app.post('/api/authorize', async (req: Request, res: Response) => {
   const userController = new UserController(req, res);
 
   return userController.authorize();
