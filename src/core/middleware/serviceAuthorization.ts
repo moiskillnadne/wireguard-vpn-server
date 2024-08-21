@@ -13,8 +13,6 @@ export const serviceAutorization = (req: Request, res: Response, next: NextFunct
 
   const authHeader = req.headers['mvnd_auth'] ?? null;
 
-  console.log(req.headers)
-
   if (authHeader && authHeader === API_KEY) {
     return next()
   }
